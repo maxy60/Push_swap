@@ -59,8 +59,8 @@ CCFLAGS 	= -Wall -Werror -Wextra
 
 all:		${NAME}
 
-${NAME}:	$(OBJS)
-			ar -rcs $@ $(OBJS)
+${NAME}: 	$(OBJS)
+			@ar -rcs $@ $(OBJS)
 clean:
 					rm -f ${OBJSB}
 
@@ -70,6 +70,6 @@ fclean:		clean
 re:			fclean all
 
 bonus:		$(OBJSB)
-			ar -rcs $(NAME) ${OBJSB}
+			@ar -rcs $(NAME) ${OBJSB}
 
 .PHONY:		all clean fclean re

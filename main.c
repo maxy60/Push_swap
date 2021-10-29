@@ -6,7 +6,7 @@
 /*   By: msainton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:17:46 by msainton          #+#    #+#             */
-/*   Updated: 2021/10/26 16:49:47 by msainton         ###   ########.fr       */
+/*   Updated: 2021/10/29 14:14:51 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,33 @@
 
 int	main(int argc, char **argv)
 {
-	int	a;
+	int	i;
 	int	b;
-	t_list *lst;
+	int	c;
+	t_stack *stack_a;
+//	t_stack *stack_b;
 
-	lst = NULL;
-	a = 1;
-	while (a < argc)
+   stack_a	= NULL;
+	i = 1;
+	c = 10;
+	while (i < argc)
 	{
 		b = 0;
-		if (argv[a][b] == '-' || argv[a][b] == '+')
+		if (argv[i][b] == '-' || argv[i][b] == '+')
 			b++;
-		while (argv[a][b])
+		while (argv[i][b])
 		{
-			if (argv[a][b] < '0' || argv[a][b] > '9')
+			if (argv[i][b] < '0' || argv[i][b] > '9')
 			{
-				printf("Error");
+				ft_putstr_fd("Error", 2);
 				return (1);
 			}
 			b++;
 		}
-		ft_put_list1(&lst, ft_atoi(argv[a]));
-	//	lst = ft_put_list(lst, ft_atoi(argv[a]));
-		a++;
+		ft_put_list1(&stack_a, ft_atoi(argv[i]));
+		ft_putchar(' ');
+		i++;
 	}
-	printf("%d %d %d\n", lst->element, lst->next->element, lst->next->next->element);
+	ft_add_elem(&stack_a, c);
 	return (0);
 }
