@@ -1,5 +1,6 @@
-SRCS		= ft_stack.c	\
-			  main.c		\
+SRCS		= ft_stack.c		\
+		  main.c		\
+		  ft_instruction.c
 
 OBJS		= ${SRCS:.c=.o}
 

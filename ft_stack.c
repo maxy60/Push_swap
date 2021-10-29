@@ -6,7 +6,7 @@
 /*   By: msainton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 17:36:40 by msainton          #+#    #+#             */
-/*   Updated: 2021/10/29 14:14:49 by msainton         ###   ########.fr       */
+/*   Updated: 2021/10/29 17:14:01 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	ft_put_list1(t_stack **lst, int element)
 		while (tmp->next != NULL)
 			tmp = tmp->next;
 		tmp->next = test;
-		ft_putnbr(tmp->element);
 	}
 }
 
