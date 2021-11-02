@@ -6,13 +6,19 @@
 /*   By: msainton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:49:32 by msainton          #+#    #+#             */
-/*   Updated: 2021/10/29 17:53:45 by msainton         ###   ########.fr       */
+/*   Updated: 2021/11/02 17:44:32 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_stack *stack_a)
+t_stack	*ft_stacklast(t_stack *stack)
+{
+	while (stack && stack->next)
+		stack = stack->next;
+		return (stack);
+}
+void	swap(t_stack *stack_a)
 {
 	int a;
 
@@ -21,11 +27,46 @@ void	sa(t_stack *stack_a)
 	stack_a->next->element = a;
 }
 
-void	pb(t_stack **stack_a, t_stack *stack_b)
+void	push(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack *tmp;
+	t_stack *tmp_b;
 
 	tmp = *stack_a;
-	stack_b = tmp;
-	stack_b->next = NULL;
+	tmp_b = *stack_b;
+	*stack_a = tmp->next;
+	tmp->next = NULL;
+	if (tmp_b != NULL)
+	    tmp->next = tmp_b->next;
+	*stack_b = tmp;
+}
+
+void	rotate(t_stack **stack)
+{
+	t_stack	*tmp;
+	int	tmp_1;
+
+	tmp = *stack;
+	tmp_1 = tmp->element;
+	while (tmp->next != NULL)
+	{
+		tmp->element = tmp->next->element;
+		tmp = tmp->next;
+	}
+	tmp->element = tmp_1;
+	tmp->next = NULL;
+}
+
+void	inverse(t_stack	**stack)
+{
+	t_stack *tmp;
+	t_stack	*tmp_1;
+
+	tmp = *stack;
+	tmp_1 = ft_stacklast(tmp);
+	while (tmp != NULL)
+	{
+		
+		tmp = tmp->next;
+	}
 }

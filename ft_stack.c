@@ -6,22 +6,35 @@
 /*   By: msainton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 17:36:40 by msainton          #+#    #+#             */
-/*   Updated: 2021/10/29 17:14:01 by msainton         ###   ########.fr       */
+/*   Updated: 2021/11/02 17:10:58 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*ft_put_list(t_stack *lst, int element)
+int	ft_stacksize(t_stack *stack)
 {
-	t_stack *tmp;
+	int	a;
 
-	tmp = malloc(sizeof(t_list));
-//	if (!tmp)
-//		return (NULL);
-	tmp->element = element;
-	tmp->next = lst;
-	return (tmp);
+	a = 0;
+	if (!stack)
+		return (0);
+	while (stack != NULL)
+	{
+		stack = stack->next;
+		a++;
+	}
+	return (a);
+}
+
+t_stack	*ft_stacknew(int content)
+{
+	t_stack *stack;
+
+	stack = (t_stack *)malloc(sizeof(t_stack));
+	stack->element = content;
+	stack->next = NULL;
+	return(stack);
 }
 
 void	ft_put_list1(t_stack **lst, int element)
