@@ -6,7 +6,7 @@
 /*   By: msainton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:49:32 by msainton          #+#    #+#             */
-/*   Updated: 2021/11/02 17:44:32 by msainton         ###   ########.fr       */
+/*   Updated: 2021/11/03 15:47:59 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_stack	*ft_stacklast(t_stack *stack)
 		stack = stack->next;
 		return (stack);
 }
+
 void	swap(t_stack *stack_a)
 {
 	int a;
@@ -44,7 +45,7 @@ void	push(t_stack **stack_a, t_stack **stack_b)
 void	rotate(t_stack **stack)
 {
 	t_stack	*tmp;
-	int	tmp_1;
+	int		tmp_1;
 
 	tmp = *stack;
 	tmp_1 = tmp->element;
@@ -60,13 +61,15 @@ void	rotate(t_stack **stack)
 void	inverse(t_stack	**stack)
 {
 	t_stack *tmp;
-	t_stack	*tmp_1;
+	int		tmp_1;
 
 	tmp = *stack;
-	tmp_1 = ft_stacklast(tmp);
-	while (tmp != NULL)
+	tmp_1 = tmp->element;
+	while (tmp->prec != NULL)
 	{
-		
-		tmp = tmp->next;
+		tmp->element = tmp->prec->element;
+		tmp = tmp->prec;
 	}
+	tmp->element = tmp_1;
+	tmp->prec = NULL;
 }

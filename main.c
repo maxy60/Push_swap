@@ -6,7 +6,7 @@
 /*   By: msainton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:17:46 by msainton          #+#    #+#             */
-/*   Updated: 2021/11/02 17:34:04 by msainton         ###   ########.fr       */
+/*   Updated: 2021/11/03 15:53:35 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ int	main(int argc, char **argv)
 	int	b;
 	t_stack *stack_a;
 	t_stack *stack_b;
+	t_var	list;
 
-	stack_a	= NULL;
 	stack_b = NULL;
 	i = 1;
+	init(&list);
 	while (i < argc)
 	{
 		b = 0;
@@ -47,14 +48,14 @@ int	main(int argc, char **argv)
 	i = 1;
 	while (i < argc)
 	{
-		ft_put_list1(&stack_a, ft_atoi(argv[i]));
+		pushback(&list, ft_atoi(argv[i]));
 		i++;
 	}
-	rotate(&stack_a);
+	stack_a	= list.first;
+//	inverse(&list.last);
+//	rotate(&stack_a);
 //	push(&stack_a, &stack_b);
-//	printf("good eveningn");
-	//swap(stack_a);
-	//ft_add_elem(&stack_a, c);
+//	swap(stack_a);
 	while (stack_a != NULL)
 	{
 		ft_putnbr(stack_a->element);
