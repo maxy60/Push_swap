@@ -1,6 +1,7 @@
 SRCS		= ft_stack.c		\
-		  main.c		\
-		  ft_instruction.c
+			  main.c			\
+			  ft_instruction.c	\
+			  push_swap.c		\
 
 OBJS		= ${SRCS:.c=.o}
 

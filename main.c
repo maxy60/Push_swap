@@ -3,15 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msainton <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:17:46 by msainton          #+#    #+#             */
-/*   Updated: 2021/11/03 15:53:35 by msainton         ###   ########.fr       */
+/*   Updated: 2021/11/10 17:36:10 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "push_swap.h"
+
+int	db_nbr(int i, int ac, char **av)
+{
+	int	j;
+	int	k;
+
+	j = i;
+	k = i + 1;
+	while (k < ac)
+	{
+		if (ft_atoi(av[j]) == ft_atoi(av[k]))
+			return (1);
+		k++;
+	}
+	return (0);
+}
+
+int	max_value(char *str)
+{
+	int	a;
+
+	a = ft_strlen(str);
+
+	if (a >= 11)
+		return (1);
+	return (0);
+}
 
 int	main(int argc, char **argv)
 {
@@ -19,14 +46,20 @@ int	main(int argc, char **argv)
 	int	b;
 	t_stack *stack_a;
 	t_stack *stack_b;
-	t_var	list;
+	t_var	*list;
 
 	stack_b = NULL;
 	i = 1;
-	init(&list);
+	init(list);
 	while (i < argc)
 	{
 		b = 0;
+		if (ft_atoi(argv[i]) > 2147483647 || ft_atoi(argv[i]) < -2147483648
+				|| max_value(argv[i]) == 1 || db_nbr(i, argc, argv) == 1)
+		{
+			ft_putstr_fd("Error", 2);
+			return (-1);
+		}
 		if (argv[i][b] == '-' || argv[i][b] == '+')
 			b++;
 		if (argv[i][0] == 0)
@@ -48,26 +81,27 @@ int	main(int argc, char **argv)
 	i = 1;
 	while (i < argc)
 	{
-		pushback(&list, ft_atoi(argv[i]));
+		pushback(list, ft_atoi(argv[i]));
 		i++;
 	}
-	stack_a	= list.first;
+	stack_a	= list->first;
+	algo(&stack_a, &stack_b);
+//	swap(stack_a);
 //	inverse(&list.last);
 //	rotate(&stack_a);
 //	push(&stack_a, &stack_b);
-//	swap(stack_a);
 	while (stack_a != NULL)
 	{
 		ft_putnbr(stack_a->element);
 		ft_putchar(' ');
 		stack_a = stack_a->next;
 	}
-	printf("\n");
-//	while (stack_b != NULL)
-//	{
-//		ft_putnbr(stack_b->element);
-//		ft_putchar(' ');
-//		stack_b = stack_b->next;
-//	}
+	printf("\nSTACK_B\n");
+	while (stack_b != NULL)
+	{
+		ft_putnbr(stack_b->element);
+		ft_putchar(' ');
+		stack_b = stack_b->next;
+	}
 	return (0);
 }

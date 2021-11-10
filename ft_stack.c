@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_stack.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msainton <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 17:36:40 by msainton          #+#    #+#             */
-/*   Updated: 2021/11/03 15:49:10 by msainton         ###   ########.fr       */
+/*   Updated: 2021/11/10 14:53:55 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,23 @@ void	pushback(t_var *l, int element)
 	else
 		l->first = stack;
 	l->last = stack;
+}
+
+void	pushfront(t_var *l, int element)
+{
+	t_stack *stack;
+
+	stack = malloc(sizeof(t_stack));
+	if (!stack)
+		return ;
+	stack->element = element;
+	stack->next = l->first;
+	stack->prec = NULL;
+	if(l->first)
+		l->first->prec = stack;
+	else
+		l->last = stack;
+	l->first = stack;
 }
 
 int	ft_stacksize(t_stack *stack)
