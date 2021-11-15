@@ -6,7 +6,7 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:17:46 by msainton          #+#    #+#             */
-/*   Updated: 2021/11/10 17:36:10 by msainton         ###   ########.fr       */
+/*   Updated: 2021/11/15 17:47:17 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,23 +85,20 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	stack_a	= list->first;
-	algo(&stack_a, &stack_b);
-//	swap(stack_a);
-//	inverse(&list.last);
-//	rotate(&stack_a);
-//	push(&stack_a, &stack_b);
-	while (stack_a != NULL)
+	new_mediane(stack_a);
+	//algo(&stack_a, &stack_b);
+	/*while (stack_a != NULL)
 	{
 		ft_putnbr(stack_a->element);
 		ft_putchar(' ');
 		stack_a = stack_a->next;
-	}
-	printf("\nSTACK_B\n");
+	}*/
+	/*printf("\nSTACK_B\n");
 	while (stack_b != NULL)
 	{
 		ft_putnbr(stack_b->element);
 		ft_putchar(' ');
 		stack_b = stack_b->next;
-	}
+	}*/
 	return (0);
 }
