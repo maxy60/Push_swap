@@ -6,7 +6,7 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:12:51 by msainton          #+#    #+#             */
-/*   Updated: 2021/11/15 18:47:44 by msainton         ###   ########.fr       */
+/*   Updated: 2021/11/16 10:45:04 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ t_stack *get_last_element(t_stack *stack)
 int	new_mediane(t_stack *stack)
 {
 	int 	i;
-	int		j;
 	int 	*stack_f;
 	t_stack *tmp;
 
@@ -35,7 +34,7 @@ int	new_mediane(t_stack *stack)
 		i++;
 		tmp = tmp->next;
 	}
-	i = 0;
+	i = 0;	
 	while (i < ft_stacksize(stack))
 	{
 		printf("stack_f %d = %d\n", i, stack_f[i]);
@@ -43,6 +42,7 @@ int	new_mediane(t_stack *stack)
 	}
 	return (0);
 }
+
 int	mediane(t_stack *stack)
 {
 	long long int a;

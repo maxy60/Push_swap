@@ -6,7 +6,7 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:17:46 by msainton          #+#    #+#             */
-/*   Updated: 2021/11/15 17:47:17 by msainton         ###   ########.fr       */
+/*   Updated: 2021/11/16 14:36:26 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,20 +85,32 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	stack_a	= list->first;
-	new_mediane(stack_a);
-	//algo(&stack_a, &stack_b);
-	/*while (stack_a != NULL)
+	if (ft_stacksize(stack_a) == 2)
+		algo2(stack_a);
+	else if (ft_stacksize(stack_a) == 3)
+		algo3(&stack_a);
+	else if (ft_stacksize(stack_a) == 4)
+		algo4(&stack_a, &stack_b);
+	else if (ft_stacksize(stack_a) == 5)
+		algo5(&stack_a, &stack_b);
+	else
+		algo(&stack_a, &stack_b);
+	//new_mediane(stack_a);
+	while (stack_a != NULL)
 	{
 		ft_putnbr(stack_a->element);
 		ft_putchar(' ');
 		stack_a = stack_a->next;
-	}*/
-	/*printf("\nSTACK_B\n");
-	while (stack_b != NULL)
+	}
+	printf("\nSTACK_B\n");
+	if (stack_b)
 	{
-		ft_putnbr(stack_b->element);
-		ft_putchar(' ');
-		stack_b = stack_b->next;
-	}*/
+		while (stack_b != NULL)
+		{
+			ft_putnbr(stack_b->element);
+			ft_putchar(' ');
+			stack_b = stack_b->next;
+		}
+	}
 	return (0);
 }

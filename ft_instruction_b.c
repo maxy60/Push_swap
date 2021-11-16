@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_instruction.c                                   :+:      :+:    :+:   */
+/*   ft_instruction_b.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/16 15:15:39 by msainton          #+#    #+#             */
-/*   Updated: 2021/11/16 15:16:45 by msainton         ###   ########.fr       */
+/*   Created: 2021/11/16 14:53:24 by msainton          #+#    #+#             */
+/*   Updated: 2021/11/16 15:43:57 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_stack *stack)
+void	sb(t_stack *stack)
 {
 	int a;
 
 	a = stack->element;
 	stack->element = stack->next->element;
 	stack->next->element = a;
+    ft_putstr("sb\n");
 }
 
-void	push(t_stack **stack_a, t_stack **stack_b)
+void	pb(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack *tmp_a;
 	t_stack *tmp_b;
@@ -34,9 +35,10 @@ void	push(t_stack **stack_a, t_stack **stack_b)
 	else
 		tmp_a->next = NULL;
 	*stack_b = tmp_a;
+    ft_putstr("pb\n");
 }
 
-void	rotate(t_stack **stack)
+void	rb(t_stack **stack)
 {
 	t_stack *first;
 	t_stack *last;
@@ -47,10 +49,11 @@ void	rotate(t_stack **stack)
 	last->next = first;
 	first->next->prec = NULL;
 	first->prec = last;
-	first->next = NULL;	
+	first->next = NULL;
+    ft_putstr("rb\n");	
 }
 
-void	reverse(t_stack	**stack)
+void	rrb(t_stack	**stack)
 {
 	t_stack *last;
 
@@ -60,4 +63,5 @@ void	reverse(t_stack	**stack)
 	last->next = *stack;
 	last->prec = NULL;
 	*stack = last;
+    ft_putstr("rrb\n");
 }
