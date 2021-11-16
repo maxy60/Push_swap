@@ -6,7 +6,7 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 17:21:57 by msainton          #+#    #+#             */
-/*   Updated: 2021/11/16 15:18:22 by msainton         ###   ########.fr       */
+/*   Updated: 2021/11/16 18:59:13 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ void    ss(t_stack **stack_a, t_stack **stack_b);
 void    rr(t_stack **stack_a, t_stack **stack_b);
 void    rrr(t_stack **stack_a, t_stack **stack_b);
 t_stack	*ft_stacklast(t_stack *stack);
-int	ft_stacksize(t_stack *stack);
+int		ft_stacksize(t_stack *stack);
+int		*ft_array(t_stack *stack);
+int		mediane(t_stack *stack);
 void	under_median(t_stack **stack_a, t_stack **stack_b);
 void	algo(t_stack **stack_a, t_stack **stack_b);
 void	algo2(t_stack *stack_a);
@@ -58,8 +60,6 @@ void	algo3(t_stack **stack_a);
 void    algo4(t_stack **stack_a, t_stack **stack_b);
 void	algo5(t_stack **stack_a, t_stack **stack_b);
 
-int		new_mediane(t_stack *stack);
-int		mediane(t_stack *stack);
 
 int		main(int argc, char **argv);
 

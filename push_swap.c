@@ -6,7 +6,7 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:12:51 by msainton          #+#    #+#             */
-/*   Updated: 2021/11/16 10:45:04 by msainton         ###   ########.fr       */
+/*   Updated: 2021/11/16 19:00:49 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ t_stack *get_last_element(t_stack *stack)
 	return (stack);
 }
 
-int	new_mediane(t_stack *stack)
+int	*ft_array(t_stack *stack)
 {
 	int 	i;
+	int		j;
+	int		k;
 	int 	*stack_f;
 	t_stack *tmp;
 
@@ -34,29 +36,33 @@ int	new_mediane(t_stack *stack)
 		i++;
 		tmp = tmp->next;
 	}
-	i = 0;	
+	i = 0;
 	while (i < ft_stacksize(stack))
 	{
-		printf("stack_f %d = %d\n", i, stack_f[i]);
+		j = i + 1;
+		while (j < ft_stacksize(stack))
+		{
+			if (stack_f[i] > stack_f[j])
+			{
+				k = stack_f[i];
+				stack_f[i] = stack_f[j];
+				stack_f[j] = k;
+			}
+			j++;
+		}
 		i++;
 	}
-	return (0);
 }
 
 int	mediane(t_stack *stack)
 {
-	long long int a;
-	long long int b;
-	
-	a = 0;
-	b = 0;
-	while (stack != NULL)
-	{
-		a = a + stack->element;
-		b++;
-		stack = stack->next;
-	}
-	return (a / b);
+	int	a;
+	int	*array;
+
+	array = ft_array(stack);
+	a = ft_stacksize(stack) / 2;
+	printf("a = %d\n", a);
+	return (array[a]);
 }
 
 void	under_median(t_stack **stack_a, t_stack **stack_b)

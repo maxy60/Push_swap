@@ -6,7 +6,7 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:17:46 by msainton          #+#    #+#             */
-/*   Updated: 2021/11/16 14:36:26 by msainton         ###   ########.fr       */
+/*   Updated: 2021/11/16 18:59:51 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ int	main(int argc, char **argv)
 		algo5(&stack_a, &stack_b);
 	else
 		algo(&stack_a, &stack_b);
-	//new_mediane(stack_a);
 	while (stack_a != NULL)
 	{
 		ft_putnbr(stack_a->element);
