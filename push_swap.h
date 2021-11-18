@@ -6,7 +6,7 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 17:21:57 by msainton          #+#    #+#             */
-/*   Updated: 2021/11/16 18:59:13 by msainton         ###   ########.fr       */
+/*   Updated: 2021/11/18 17:25:13 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,15 @@ typedef struct s_var
 	t_stack *last;
 }	t_var;
 
+typedef struct s_mynbr
+{
+	int	nbr;
+	int	count;
+}	t_mynbr;
+
 t_stack *get_last_element(t_stack *stack);
 void	init(t_var *l);
+void	init1(t_mynbr *nbr);
 void	pushback(t_var *l, int element);
 void	pushfront(t_var *l, int element);
 void	ft_put_list1(t_stack **lst, int element);
@@ -54,6 +61,9 @@ int		ft_stacksize(t_stack *stack);
 int		*ft_array(t_stack *stack);
 int		mediane(t_stack *stack);
 void	under_median(t_stack **stack_a, t_stack **stack_b);
+int		calc_b(t_stack *b, int nbr);
+int		calc_a(t_stack *a, int nbr);
+t_mynbr	*get_min_op(t_stack *stack_a, t_stack *stack_b);
 void	algo(t_stack **stack_a, t_stack **stack_b);
 void	algo2(t_stack *stack_a);
 void	algo3(t_stack **stack_a);

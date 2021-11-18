@@ -6,7 +6,7 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:17:46 by msainton          #+#    #+#             */
-/*   Updated: 2021/11/16 18:59:51 by msainton         ###   ########.fr       */
+/*   Updated: 2021/11/18 17:25:24 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,13 @@ int	main(int argc, char **argv)
 	int	b;
 	t_stack *stack_a;
 	t_stack *stack_b;
-	t_var	*list;
+	t_var	list;
+	t_mynbr	mynbr;
 
 	stack_b = NULL;
 	i = 1;
-	init(list);
+	init(&list);
+	init1(&mynbr);
 	while (i < argc)
 	{
 		b = 0;
@@ -81,10 +83,10 @@ int	main(int argc, char **argv)
 	i = 1;
 	while (i < argc)
 	{
-		pushback(list, ft_atoi(argv[i]));
+		pushback(&list, ft_atoi(argv[i]));
 		i++;
 	}
-	stack_a	= list->first;
+	stack_a	= list.first;
 	if (ft_stacksize(stack_a) == 2)
 		algo2(stack_a);
 	else if (ft_stacksize(stack_a) == 3)
