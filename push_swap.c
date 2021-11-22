@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:12:51 by msainton          #+#    #+#             */
-/*   Updated: 2021/11/18 17:33:37 by msainton         ###   ########.fr       */
+/*   Updated: 2021/11/19 20:20:39 by maxime           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,18 +88,19 @@ void	under_median(t_stack **stack_a, t_stack **stack_b)
 
 int		calc_b(t_stack *stack_b, int nbr)
 {
-	int		count;
-	
-	count = 0;
-	while (stack_b != NULL)
-	{
-		nbr = stack_b->element;
-		count++;
-		if (ft_stacksize(stack_b) / 2 + 1 > count)
-			count--;
-		stack_b = stack_b->next;
-	}
-	return (count);
+	int	count;
+	int	size;
+
+    count = 0;
+	size = ft_stacksize(stack_b);
+    while (stack_b && stack_b->element != nbr)
+    {
+        stack_b = stack_b->next;
+        count++;
+    }
+    if (count > size / 2)
+        return (size - count);
+    return (count);
 }
 
 int		min_value(t_stack *stack)
@@ -115,65 +116,152 @@ int		min_value(t_stack *stack)
 	}
 	return (i);
 }
+
+int		max_valuee(t_stack *stack)
+{
+	int	i;
+
+	i = stack->element;
+	while (stack)
+	{
+		if (stack->element > i)
+			i = stack->element;
+		stack = stack->next;
+	}
+	return (i);
+}
+
+int		pos_value_b(t_stack *stack, int nbr)
+{
+	int	i;
+
+	i = 0;
+	while (stack)
+	{
+		if (stack->element == nbr)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+int		pos_value_a(t_stack *stack, int nbr)
+{
+	int	i;
+	
+	i = 0;
+	if (nbr < min_value(stack))
+		return(calc_b(stack, min_value(stack)));
+	stack = stack->element;
+	i++;
+	return(0);
+	while(stack && !(nbr > stack->element &&  nbr < stack->prec->element) && nbr > min_value(stack))
+	{
+		i++;
+		stack = stack->next;
+	}
+	return (i);
+}
+
 int		calc_a(t_stack *stack_a, int nbr)
 {
 	int		count;
 	t_stack	*last;
+	int		size;
 
+	size = ft_stacksize(stack_a);
 	count = 0;
 	last = get_last_element(stack_a);
-	if (nbr > stack_a->element && nbr < last->element && nbr > min_value(stack_a))
-		return (count);
+	if (size <= 1)
+		return(count);
+	if (nbr < min_value(stack_a))
+		return(calc_b(stack_a, min_value(stack_a)));
 	stack_a = stack_a->next;
 	count++;
-	while(nbr > stack_a->element &&  nbr < stack_a->prec->element && nbr > min_value(stack_a))
+	while(stack_a && !(nbr > stack_a->element &&  nbr < stack_a->prec->element) && nbr > min_value(stack_a))
 	{
 		count++;
 		stack_a = stack_a->next;
 	}
-	if (count > ft_stacksize(stack_a) / 2)
-		count = ft_stacksize(stack_a) - count;
+	if (count > size / 2)
+		count = size - count;
 	return (count);
 }
 
-t_mynbr	*get_min_op(t_stack *stack_a, t_stack *stack_b)
+t_mynbr	get_min_op(t_stack *stack_a, t_stack *stack_b)
 {
 	int		tmp_nbr;
 	int		tmp_count;
 	t_stack	*tmp;
-	t_mynbr	*mynbr;
+	t_mynbr	mynbr;
 	
-	mynbr->nbr = stack_b->element;
-	mynbr->count = calc_b(stack_b, stack_b->element) + calc_a(stack_a, stack_b->element);
-	while (stack_b)
+	tmp = stack_b;
+	mynbr.nbr = tmp->element;
+	mynbr.count = calc_b(stack_b, tmp->element) + calc_a(stack_a, tmp->element) + 1;
+	while (tmp)
 	{
-		tmp_nbr = stack_b->element;
-		tmp_count = calc_b(stack_b, stack_b->element) + calc_a(stack_a, stack_b->element);
-		if (tmp_count < mynbr->count)
+		tmp_nbr = tmp->element;
+		tmp_count = calc_b(stack_b, tmp->element) + calc_a(stack_a, tmp->element) + 1;
+		if (tmp_count < mynbr.count)
 		{
-			mynbr->count = tmp_count;
-			mynbr->nbr = tmp_nbr;
+			mynbr.count = tmp_count;
+			mynbr.nbr = tmp_nbr;
 		}
-		stack_b = stack_b->next;
+		tmp = tmp->next;
 	}
 	return (mynbr);
 }
+
+void	do_op(t_stack **stack_a, t_stack **stack_b)
+{
+	t_mynbr mynbr;
+	
+	mynbr = get_min_op((*stack_a), (*stack_b));
+	printf(" STACKb = %d mynbr = %d count = %d\n", (*stack_b)->element, mynbr.nbr, mynbr.count);
+	int	tmp_a;
+	int	tmp_b;
+	tmp_b = calc_b((*stack_b), mynbr.nbr);
+	while (tmp_b > 0)
+	{
+		printf("TEST");
+		if (pos_value_b((*stack_b), mynbr.nbr) > ft_stacksize((*stack_b)) / 2)
+			rrb(stack_b);
+		else
+			rb(stack_b);
+	}
+	tmp_a = calc_a((*stack_a), mynbr.nbr);
+	while (tmp_a > 0)
+	{
+		printf("NTMM");
+		if (pos_value_a((*stack_a), mynbr.nbr) > ft_stacksize((*stack_a)) / 2)
+			rra(stack_a);
+		else
+			ra(stack_a);
+		tmp_a--;
+	}
+	pb(stack_b, stack_a);	
+}
+
 void	algo(t_stack **stack_a, t_stack **stack_b)
 {
 	int		a;
 	t_mynbr	mynbr;
 
-	while (ft_stacksize((*stack_a)) > 1)
+	while (ft_stacksize(*stack_a) > 1)
 	{
 		a = mediane(*stack_a);
 		under_median(stack_a, stack_b);
 	}
 	pb(stack_b, stack_a);
-	while (ft_stacksize((*stack_b)) >= 1)
-	{
-		mynbr = get_min_op((*stack_a), (*stack_b));
-		if (mynbr.count == 1)
-			pb(stack_b, stack_a);
-		printf("nbr = %d\ncount = %d\n", mynbr.nbr, mynbr.count);
-	}
+
+	//while ((*stack_b))
+		do_op(stack_a, stack_b);
+		do_op(stack_a, stack_b);
+		do_op(stack_a, stack_b);
+		do_op(stack_a, stack_b);
+//	while (ft_stacksize((*stack_b)) >= 1)
+//	{
+//		mynbr = get_min_op((*stack_a), (*stack_b));
+//		pb(stack_b, stack_a);
+//	}
 }
