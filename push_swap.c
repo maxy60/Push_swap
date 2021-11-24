@@ -6,7 +6,7 @@
 /*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:12:51 by msainton          #+#    #+#             */
-/*   Updated: 2021/11/19 20:20:39 by maxime           ###   ########.fr       */
+/*   Updated: 2021/11/24 16:10:37 by maxime           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,9 @@ int		calc_b(t_stack *stack_b, int nbr)
 
     count = 0;
 	size = ft_stacksize(stack_b);
+
+	if (size <= 1)
+		return (count);
     while (stack_b && stack_b->element != nbr)
     {
         stack_b = stack_b->next;
@@ -134,27 +137,34 @@ int		max_valuee(t_stack *stack)
 int		pos_value_b(t_stack *stack, int nbr)
 {
 	int	i;
+	int	size;
 
 	i = 0;
+	size = ft_stacksize(stack);
+	if (size <= 1)
+		return (i);
 	while (stack)
 	{
 		if (stack->element == nbr)
 			return (i);
 		i++;
 	}
-	return (-1);
+	return (0);
 }
 
 int		pos_value_a(t_stack *stack, int nbr)
 {
 	int	i;
+	int	size;
 	
 	i = 0;
+	size = ft_stacksize(stack);
+	if (size <= 1)
+		return (i);
 	if (nbr < min_value(stack))
 		return(calc_b(stack, min_value(stack)));
-	stack = stack->element;
+	stack = stack->next;
 	i++;
-	return(0);
 	while(stack && !(nbr > stack->element &&  nbr < stack->prec->element) && nbr > min_value(stack))
 	{
 		i++;
@@ -217,28 +227,32 @@ void	do_op(t_stack **stack_a, t_stack **stack_b)
 	t_mynbr mynbr;
 	
 	mynbr = get_min_op((*stack_a), (*stack_b));
-	printf(" STACKb = %d mynbr = %d count = %d\n", (*stack_b)->element, mynbr.nbr, mynbr.count);
 	int	tmp_a;
 	int	tmp_b;
 	tmp_b = calc_b((*stack_b), mynbr.nbr);
 	while (tmp_b > 0)
 	{
-		printf("TEST");
-		if (pos_value_b((*stack_b), mynbr.nbr) > ft_stacksize((*stack_b)) / 2)
-			rrb(stack_b);
+		if (ft_stacksize((*stack_b)) > 2)
+		{
+			if (pos_value_b((*stack_b), mynbr.nbr) > ft_stacksize((*stack_b)) / 2)
+				rrb(stack_b);
+			else
+				rb(stack_b);
+		}	
 		else
-			rb(stack_b);
+			sb((*stack_b));
+		tmp_b--;
 	}
 	tmp_a = calc_a((*stack_a), mynbr.nbr);
 	while (tmp_a > 0)
 	{
-		printf("NTMM");
-		if (pos_value_a((*stack_a), mynbr.nbr) > ft_stacksize((*stack_a)) / 2)
-			rra(stack_a);
-		else
-			ra(stack_a);
+			if (pos_value_a((*stack_a), mynbr.nbr) > ft_stacksize((*stack_a)) / 2)
+				rra(stack_a);
+			else
+				ra(stack_a);
 		tmp_a--;
 	}
+	printf(" STACKb = %d mynbr = %d count = %d\n", (*stack_b)->element, mynbr.nbr, mynbr.count);
 	pb(stack_b, stack_a);	
 }
 
@@ -254,14 +268,7 @@ void	algo(t_stack **stack_a, t_stack **stack_b)
 	}
 	pb(stack_b, stack_a);
 
-	//while ((*stack_b))
+	while ((*stack_b))
 		do_op(stack_a, stack_b);
-		do_op(stack_a, stack_b);
-		do_op(stack_a, stack_b);
-		do_op(stack_a, stack_b);
-//	while (ft_stacksize((*stack_b)) >= 1)
-//	{
-//		mynbr = get_min_op((*stack_a), (*stack_b));
-//		pb(stack_b, stack_a);
-//	}
+
 }
