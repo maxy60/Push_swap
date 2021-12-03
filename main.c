@@ -6,12 +6,22 @@
 /*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:17:46 by msainton          #+#    #+#             */
-/*   Updated: 2021/11/19 01:04:13 by maxime           ###   ########.fr       */
+/*   Updated: 2021/12/03 11:59:12 by maxime           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "push_swap.h"
+
+void	free_stack(t_stack *stack)
+{
+	while (stack->next != NULL)
+	{
+		stack = stack->next;
+		free(stack->prec);
+	}
+	free(stack);
+}
 
 int	db_nbr(int i, int ac, char **av)
 {
@@ -97,22 +107,5 @@ int	main(int argc, char **argv)
 		algo5(&stack_a, &stack_b);
 	else
 		algo(&stack_a, &stack_b);
-	printf("\nSTACK_A\n");
-	while (stack_a != NULL)
-	{
-		ft_putnbr(stack_a->element);
-		ft_putchar(' ');
-		stack_a = stack_a->next;
-	}
-	printf("\nSTACK_B\n");
-	if (stack_b)
-	{
-		while (stack_b != NULL)
-		{
-			ft_putnbr(stack_b->element);
-			ft_putchar(' ');
-			stack_b = stack_b->next;
-		}
-	}
-	return (0);
+	free_stack(stack_a);
 }

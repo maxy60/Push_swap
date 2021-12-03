@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_instruction_a.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:49:32 by msainton          #+#    #+#             */
-/*   Updated: 2021/11/16 15:13:30 by msainton         ###   ########.fr       */
+/*   Updated: 2021/11/28 17:28:50 by maxime           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,20 @@ void	sa(t_stack *stack)
 	ft_putstr("sa\n");
 }
 
-void	pa(t_stack **stack_a, t_stack **stack_b)
+void	pa(t_stack **stack_b, t_stack **stack_a)
 {
-	t_stack *tmp_a;
-	t_stack *tmp_b;
+	t_stack *new_head;
 
-	tmp_a = *stack_a;
-	tmp_b = *stack_b;
-	*stack_a = tmp_a->next;
-	if (tmp_b != NULL)
-	    tmp_a->next = *stack_b;
-	else
-		tmp_a->next = NULL;
-	*stack_b = tmp_a;
+	if (*stack_b == NULL)
+		return;
+	new_head = *stack_b;
+	*stack_b = (*stack_b)->next;
+	if (*stack_b)
+		(*stack_b)->prec = NULL;
+	new_head->next = *stack_a;
+	if (*stack_a)
+		(*stack_a)->prec = new_head;
+	*stack_a = new_head;
 	ft_putstr("pa\n");
 }
 

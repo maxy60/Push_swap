@@ -4,8 +4,11 @@ SRCS		= ft_stack.c			\
 			  ft_instruction_b.c	\
 			  ft_instruction_ab.c	\
 			  ft_instruction.c		\
-			  push_swap.c			\
 			  algo_under_6.c		\
+			  push_swap.c			\
+			  push_swap2.c			\
+			  utils.c				\
+			  mediane.c				\
 
 OBJS		= ${SRCS:.c=.o}
 

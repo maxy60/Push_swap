@@ -6,7 +6,7 @@
 /*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 14:53:24 by msainton          #+#    #+#             */
-/*   Updated: 2021/11/24 16:20:57 by maxime           ###   ########.fr       */
+/*   Updated: 2021/11/24 18:27:111 by maxime           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,19 @@ void	sb(t_stack *stack)
 
 void	pb(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack *tmp_a;
-	t_stack *tmp_b;
+	t_stack *new_head;
 
-	tmp_a = *stack_a;
-	tmp_b = *stack_b;
-	*stack_a = tmp_a->next;
-	if (tmp_b != NULL)
-	    tmp_a->next = *stack_b;
-	else
-		tmp_a->next = NULL;
-	*stack_b = tmp_a;
-    ft_putstr("pb\n");
+	if (*stack_a == NULL)
+		return ;
+	new_head = *stack_a;
+	*stack_a = (*stack_a)->next;
+	if (*stack_a)
+		(*stack_a)->prec = NULL;
+	new_head->next = (*stack_b);
+	if (*stack_b)
+		(*stack_b)->prec = new_head;
+	*stack_b = new_head;
+	ft_putstr("pb\n");
 }
 
 void	rb(t_stack **stack)
