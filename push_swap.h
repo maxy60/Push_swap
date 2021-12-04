@@ -3,31 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 17:21:57 by msainton          #+#    #+#             */
-/*   Updated: 2021/12/03 11:54:49 by maxime           ###   ########.fr       */
+/*   Updated: 2021/12/04 12:51:53 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <stdlib.h>
-#include <stdio.h>
-#include "./libft/libft.h"
+# include <stdlib.h>
+# include <stdio.h>
+# include "./libft/libft.h"
 
 typedef struct s_stack
 {
-	int	element;
-	struct s_stack *next;
-	struct s_stack *prec;
+	int				element;
+	struct s_stack	*next;
+	struct s_stack	*prec;
 }	t_stack;
 
 typedef struct s_var
 {
-	t_stack *first;
-	t_stack *last;
+	t_stack	*first;
+	t_stack	*last;
 }	t_var;
 
 typedef struct s_mynbr
@@ -54,11 +54,11 @@ void	sb(t_stack *stack);
 void	pb(t_stack **stack_a, t_stack **stack_b);
 void	rb(t_stack **stack);
 void	rrb(t_stack **stack);
-void    ss(t_stack **stack_a, t_stack **stack_b);
-void    rr(t_stack **stack_a, t_stack **stack_b);
-void    rrr(t_stack **stack_a, t_stack **stack_b);
+void	ss(t_stack **stack_a, t_stack **stack_b);
+void	rr(t_stack **stack_a, t_stack **stack_b);
+void	rrr(t_stack **stack_a, t_stack **stack_b);
 
-t_stack *get_last_element(t_stack *stack);
+t_stack	*get_last_element(t_stack *stack);
 int		ft_stacksize(t_stack *stack);
 int		min_value(t_stack *stack);
 int		max_valuee(t_stack *stack);
@@ -74,10 +74,12 @@ t_mynbr	get_min_op(t_stack *stack_a, t_stack *stack_b);
 void	algo(t_stack **stack_a, t_stack **stack_b);
 void	algo2(t_stack *stack_a);
 void	algo3(t_stack **stack_a);
-void    algo4(t_stack **stack_a, t_stack **stack_b);
+void	algo4(t_stack **stack_a, t_stack **stack_b);
 void	algo5(t_stack **stack_a, t_stack **stack_b);
 
-
+int		db_nbr(int i, int ac, char **av);
+int		max_value(char *str);
+int		g_error(int argc, char **argv);
 int		main(int argc, char **argv);
 
 #endif

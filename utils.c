@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 11:26:55 by maxime            #+#    #+#             */
-/*   Updated: 2021/12/03 11:40:33 by maxime           ###   ########.fr       */
+/*   Updated: 2021/12/04 12:01:27 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack *get_last_element(t_stack *stack)
+t_stack	*get_last_element(t_stack *stack)
 {
 	while (stack && stack->next != NULL)
 		stack = stack->next;
 	return (stack);
 }
 
-int		min_value(t_stack *stack)
+int	min_value(t_stack *stack)
 {
 	int	i;
 
@@ -35,7 +35,7 @@ int		min_value(t_stack *stack)
 	return (i);
 }
 
-int		max_valuee(t_stack *stack)
+int	max_valuee(t_stack *stack)
 {
 	int	i;
 

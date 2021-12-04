@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:17:46 by msainton          #+#    #+#             */
-/*   Updated: 2021/12/03 11:59:12 by maxime           ###   ########.fr       */
+/*   Updated: 2021/12/04 12:54:40 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,39 +23,25 @@ void	free_stack(t_stack *stack)
 	free(stack);
 }
 
-int	db_nbr(int i, int ac, char **av)
+void	chose_algo(t_stack **stack_a, t_stack **stack_b)
 {
-	int	j;
-	int	k;
-
-	j = i;
-	k = i + 1;
-	while (k < ac)
-	{
-		if (ft_atoi(av[j]) == ft_atoi(av[k]))
-			return (1);
-		k++;
-	}
-	return (0);
-}
-
-int	max_value(char *str)
-{
-	int	a;
-
-	a = ft_strlen(str);
-
-	if (a >= 11)
-		return (1);
-	return (0);
+	if (ft_stacksize(*stack_a) == 2)
+		algo2(*stack_a);
+	else if (ft_stacksize(*stack_a) == 3)
+		algo3(stack_a);
+	else if (ft_stacksize(*stack_a) == 4)
+		algo4(stack_a, stack_b);
+	else if (ft_stacksize(*stack_a) == 5)
+		algo5(stack_a, stack_b);
+	else
+		algo(stack_a, stack_b);
 }
 
 int	main(int argc, char **argv)
 {
-	int	i;
-	int	b;
-	t_stack *stack_a;
-	t_stack *stack_b;
+	int		i;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
 	t_var	list;
 	t_mynbr	mynbr;
 
@@ -63,49 +49,17 @@ int	main(int argc, char **argv)
 	i = 1;
 	init(&list);
 	init1(&mynbr);
-	while (i < argc)
+	if (g_error(argc, argv) == -1)
 	{
-		b = 0;
-		if (ft_atoi(argv[i]) > 2147483647 || ft_atoi(argv[i]) < -2147483648
-				|| max_value(argv[i]) == 1 || db_nbr(i, argc, argv) == 1)
-		{
-			ft_putstr_fd("Error", 2);
-			return (-1);
-		}
-		if (argv[i][b] == '-' || argv[i][b] == '+')
-			b++;
-		if (argv[i][0] == 0)
-		{
-			ft_putstr_fd("Error", 2);
-			return (-1);
-		}
-		while (argv[i][b])
-		{
-			if (argv[i][b] < '0' || argv[i][b] > '9')
-			{
-				ft_putstr_fd("Error", 2);
-				return (-1);
-			}
-			b++;
-		}
-		i++;
+		ft_putstr_fd("Error", 2);
+		return (-1);
 	}
-	i = 1;
 	while (i < argc)
 	{
 		pushback(&list, ft_atoi(argv[i]));
 		i++;
 	}
-	stack_a	= list.first;
-	if (ft_stacksize(stack_a) == 2)
-		algo2(stack_a);
-	else if (ft_stacksize(stack_a) == 3)
-		algo3(&stack_a);
-	else if (ft_stacksize(stack_a) == 4)
-		algo4(&stack_a, &stack_b);
-	else if (ft_stacksize(stack_a) == 5)
-		algo5(&stack_a, &stack_b);
-	else
-		algo(&stack_a, &stack_b);
+	stack_a = list.first;
+	chose_algo(&stack_a, &stack_b);
 	free_stack(stack_a);
 }

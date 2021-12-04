@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:12:51 by msainton          #+#    #+#             */
-/*   Updated: 2021/11/24 17:16:112 by maxime           ###   ########.fr       */
+/*   Updated: 2021/12/04 13:29:46 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,34 @@
 
 void	db_op(t_stack **stack_a, t_stack **stack_b)
 {
-	t_mynbr mynbr;
-	int		pos_a; 
+	t_mynbr	mynbr;
+	int		pos_a;
 	int		pos_b;
-	int		tmp_a;
-	int		tmp_b;
 	int		tmp_count;
 
 	mynbr = get_min_op((*stack_a), (*stack_b));
 	pos_a = pos_value_a((*stack_a), mynbr.nbr);
 	pos_b = pos_value_b((*stack_b), mynbr.nbr);
 	tmp_count = mynbr.count;
-
-	if (pos_a > (ft_stacksize(*stack_a) / 2) && pos_b > (ft_stacksize(*stack_b) / 2))
+	if (pos_a > (ft_stacksize(*stack_a) / 2)
+		&& pos_b > (ft_stacksize(*stack_b) / 2))
 	{
-		while (pos_value_a((*stack_a), mynbr.nbr) != 0 && pos_value_b((*stack_b), mynbr.nbr) != 0)
+		while (pos_value_a((*stack_a), mynbr.nbr) != 0
+			&& pos_value_b((*stack_b), mynbr.nbr) != 0)
 			rrr(stack_a, stack_b);
 	}
-	else if (pos_a <= (ft_stacksize(*stack_a) / 2) && pos_b <= (ft_stacksize(*stack_b) / 2))
+	else if (pos_a <= (ft_stacksize(*stack_a) / 2)
+		&& pos_b <= (ft_stacksize(*stack_b) / 2))
 	{
-		while (pos_value_a((*stack_a), mynbr.nbr) != 0 && pos_value_b((*stack_b), mynbr.nbr) != 0)
-			rr(stack_a, stack_b);		
+		while (pos_value_a((*stack_a), mynbr.nbr) != 0
+			&& pos_value_b((*stack_b), mynbr.nbr) != 0)
+			rr(stack_a, stack_b);
 	}
 }
 
 void	do_opb(t_stack **stack_a, t_stack **stack_b)
 {
-	t_mynbr mynbr;
+	t_mynbr	mynbr;
 	int		tmp_b;
 	int		pos_b;
 
@@ -62,10 +63,10 @@ void	do_opb(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
-
 void	check_min(t_stack **stack_a, int nbr)
 {
-	if (pos_value_b(*stack_a, min_value(*stack_a)) >= ft_stacksize(*stack_a)/2)
+	if (pos_value_b(*stack_a, min_value(*stack_a))
+		>= ft_stacksize(*stack_a) / 2)
 	{
 		while ((*stack_a)->element != min_value(*stack_a))
 			rra(stack_a);
@@ -79,9 +80,9 @@ void	check_min(t_stack **stack_a, int nbr)
 
 void	do_opa(t_stack **stack_a, t_stack **stack_b)
 {
-	t_mynbr mynbr;
-	int	tmp_a;
-	int	pos_a;
+	t_mynbr	mynbr;
+	int		tmp_a;
+	int		pos_a;
 
 	mynbr = get_min_op((*stack_a), (*stack_b));
 	pos_a = pos_value_a((*stack_a), mynbr.nbr);
@@ -89,21 +90,15 @@ void	do_opa(t_stack **stack_a, t_stack **stack_b)
 	while (tmp_a > 0)
 	{
 		if (mynbr.nbr < min_value(*stack_a))
-		{
 			check_min(stack_a, mynbr.nbr);
-			tmp_a--;
-		}
 		else
 		{
-			while (tmp_a > 0)
-			{
-					if (pos_a > ft_stacksize((*stack_a)) / 2)
-						rra(stack_a);
-					else
-						ra(stack_a);
-				tmp_a--;
-			}
+			if (pos_a > ft_stacksize((*stack_a)) / 2)
+				rra(stack_a);
+			else
+				ra(stack_a);
 		}
+		tmp_a--;
 	}
 }
 

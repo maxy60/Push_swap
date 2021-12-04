@@ -1,4 +1,5 @@
 SRCS		= ft_stack.c			\
+			  g_error.c				\
 			  main.c				\
 			  ft_instruction_a.c	\
 			  ft_instruction_b.c	\

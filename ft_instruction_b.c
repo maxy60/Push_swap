@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_instruction_b.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 14:53:24 by msainton          #+#    #+#             */
-/*   Updated: 2021/11/24 18:27:111 by maxime           ###   ########.fr       */
+/*   Updated: 2021/12/04 11:57:30 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void	sb(t_stack *stack)
 {
-	int a;
+	int	a;
 
 	a = stack->element;
 	stack->element = stack->next->element;
 	stack->next->element = a;
-    ft_putstr("sb\n");
+	ft_putstr("sb\n");
 }
 
 void	pb(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack *new_head;
+	t_stack	*new_head;
 
 	if (*stack_a == NULL)
 		return ;
@@ -41,8 +41,8 @@ void	pb(t_stack **stack_a, t_stack **stack_b)
 
 void	rb(t_stack **stack)
 {
-	t_stack *first;
-	t_stack *last;
+	t_stack	*first;
+	t_stack	*last;
 
 	first = *stack;
 	*stack = (*stack)->next;
@@ -51,12 +51,12 @@ void	rb(t_stack **stack)
 	first->next->prec = NULL;
 	first->prec = last;
 	first->next = NULL;
-    ft_putstr("rb\n");	
+	ft_putstr("rb\n");
 }
 
 void	rrb(t_stack	**stack)
 {
-	t_stack *last;
+	t_stack	*last;
 
 	last = get_last_element(*stack);
 	last->prec->next = NULL;
@@ -64,5 +64,5 @@ void	rrb(t_stack	**stack)
 	last->next = *stack;
 	last->prec = NULL;
 	*stack = last;
-    ft_putstr("rrb\n");
+	ft_putstr("rrb\n");
 }

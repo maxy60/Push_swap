@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_instruction.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 15:15:39 by msainton          #+#    #+#             */
-/*   Updated: 2021/11/30 18:32:46 by maxime           ###   ########.fr       */
+/*   Updated: 2021/12/04 11:36:52 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	swap(t_stack *stack)
 {
-	int a;
+	int	a;
 
 	a = stack->element;
 	stack->element = stack->next->element;
@@ -23,7 +23,7 @@ void	swap(t_stack *stack)
 
 void	push(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack *new_head;
+	t_stack	*new_head;
 
 	if (*stack_a == NULL)
 		return ;
@@ -39,8 +39,8 @@ void	push(t_stack **stack_a, t_stack **stack_b)
 
 void	rotate(t_stack **stack)
 {
-	t_stack *first;
-	t_stack *last;
+	t_stack	*first;
+	t_stack	*last;
 
 	first = *stack;
 	*stack = (*stack)->next;
@@ -48,12 +48,12 @@ void	rotate(t_stack **stack)
 	last->next = first;
 	first->next->prec = NULL;
 	first->prec = last;
-	first->next = NULL;	
+	first->next = NULL;
 }
 
 void	reverse(t_stack	**stack)
 {
-	t_stack *last;
+	t_stack	*last;
 
 	last = get_last_element(*stack);
 	last->prec->next = NULL;

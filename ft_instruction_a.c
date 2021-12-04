@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_instruction_a.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:49:32 by msainton          #+#    #+#             */
-/*   Updated: 2021/11/28 17:28:50 by maxime           ###   ########.fr       */
+/*   Updated: 2021/12/04 11:55:25 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ t_stack	*ft_stacklast(t_stack *stack)
 {
 	while (stack && stack->next)
 		stack = stack->next;
-		return (stack);
+	return (stack);
 }
 
 void	sa(t_stack *stack)
 {
-	int a;
+	int	a;
 
 	a = stack->element;
 	stack->element = stack->next->element;
@@ -31,10 +31,10 @@ void	sa(t_stack *stack)
 
 void	pa(t_stack **stack_b, t_stack **stack_a)
 {
-	t_stack *new_head;
+	t_stack	*new_head;
 
 	if (*stack_b == NULL)
-		return;
+		return ;
 	new_head = *stack_b;
 	*stack_b = (*stack_b)->next;
 	if (*stack_b)
@@ -48,8 +48,8 @@ void	pa(t_stack **stack_b, t_stack **stack_a)
 
 void	ra(t_stack **stack)
 {
-	t_stack *first;
-	t_stack *last;
+	t_stack	*first;
+	t_stack	*last;
 
 	first = *stack;
 	*stack = (*stack)->next;
@@ -58,12 +58,12 @@ void	ra(t_stack **stack)
 	first->next->prec = NULL;
 	first->prec = last;
 	first->next = NULL;
-	ft_putstr("ra\n");	
+	ft_putstr("ra\n");
 }
 
 void	rra(t_stack	**stack)
 {
-	t_stack *last;
+	t_stack	*last;
 
 	last = get_last_element(*stack);
 	last->prec->next = NULL;

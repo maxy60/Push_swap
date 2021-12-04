@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mediane.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 11:47:01 by maxime            #+#    #+#             */
-/*   Updated: 2021/12/03 11:47:56 by maxime           ###   ########.fr       */
+/*   Updated: 2021/12/04 11:50:25 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	sort_array(t_stack *stack, int *stack_f)
 	int		i;
 	int		j;
 	int		k;
+
 	i = 0;
 	while (i < ft_stacksize(stack))
 	{
@@ -37,11 +38,11 @@ static void	sort_array(t_stack *stack, int *stack_f)
 
 static int	*ft_array(t_stack *stack)
 {
-	int 	i;
+	int		i;
 	int		j;
 	int		k;
-	int 	*stack_f;
-	t_stack *tmp;
+	int		*stack_f;
+	t_stack	*tmp;
 
 	i = 0;
 	tmp = stack;
@@ -74,8 +75,9 @@ static int	mediane(t_stack *stack)
 
 void	under_median(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack *last;
-	int a;
+	t_stack	*last;
+	int		a;
+
 	last = get_last_element(*stack_a);
 	a = mediane(*stack_a);
 	while ((*stack_a) != last)
