@@ -6,11 +6,10 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:17:46 by msainton          #+#    #+#             */
-/*   Updated: 2021/12/04 12:54:40 by msainton         ###   ########.fr       */
+/*   Updated: 2021/12/06 15:29:49 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "push_swap.h"
 
 void	free_stack(t_stack *stack)
