@@ -6,7 +6,7 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 15:21:39 by msainton          #+#    #+#             */
-/*   Updated: 2021/12/07 16:04:40 by msainton         ###   ########.fr       */
+/*   Updated: 2021/12/07 20:45:44 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,11 @@ int	checker(t_stack **stack_a, t_stack **stack_b)
 				return (stack_sort(*stack_a, *stack_b));
 		}
 		buff[i] = 0;
+		if (check_do(stack_a, stack_b, buff) == -1)
+		{
+			ft_putstr("KO\n");
+			return (-1);
+		}
 		check_do(stack_a, stack_b, buff);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:06:16 by msainton          #+#    #+#             */
-/*   Updated: 2021/12/07 15:39:27 by msainton         ###   ########.fr       */
+/*   Updated: 2021/12/07 21:22:02 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,18 @@ int	compare(char *s1, char *s2)
 		return (0);
 }
 
+int	is_ok(char *buff)
+{
+	if (compare(buff, "sa\n") == 1 || compare(buff, "sb\n") == 1
+		|| compare(buff, "ss\n") == 1 || compare(buff, "ra\n") == 1
+		|| compare(buff, "rb\n") == 1 || compare(buff, "rr\n") == 1
+		|| compare(buff, "rra\n") == 1 || compare(buff, "rrb\n") == 1
+		|| compare(buff, "rrr\n") == 1 || compare(buff, "pa\n") == 1
+		|| compare(buff, "pb\n") == 1)
+		return (0);
+	return (-1);
+}
+
 int	check_do(t_stack **stack_a, t_stack **stack_b, char *buff)
 {
 	if (compare(buff, "sa\n") == 1)
@@ -41,7 +53,7 @@ int	check_do(t_stack **stack_a, t_stack **stack_b, char *buff)
 		rr(stack_a, stack_b);
 	else if (compare(buff, "rra\n") == 1)
 		rra(stack_a);
-	else if (compare(buff, "rrb\n") == 1)
+	else if (compare(buff, "rrb\n") == 1 && *stack_b)
 		rrb(stack_b);
 	else if (compare(buff, "rrr\n") == 1)
 		rrr(stack_a, stack_b);
@@ -49,7 +61,7 @@ int	check_do(t_stack **stack_a, t_stack **stack_b, char *buff)
 		pa(stack_b, stack_a);
 	else if (compare(buff, "pb\n") == 1)
 		pb(stack_a, stack_b);
-	else
+	else if (is_ok(buff) == -1)
 		return (-1);
 	return (0);
 }
