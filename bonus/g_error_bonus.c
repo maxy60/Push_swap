@@ -6,7 +6,7 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 12:04:19 by msainton          #+#    #+#             */
-/*   Updated: 2021/12/06 20:03:26 by msainton         ###   ########.fr       */
+/*   Updated: 2021/12/07 16:38:07 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	max_value(char *str)
 	int	a;
 
 	a = ft_strlen(str);
-	if (a >= 11)
+	if (a > 11)
 		return (1);
 	return (0);
 }
@@ -52,7 +52,7 @@ int	g_error(int argc, char **argv)
 			return (-1);
 		if (argv[i][b] == '-' || argv[i][b] == '+')
 			b++;
-		if (argv[i][0] == 0)
+		if (argv[i][b] == 0)
 			return (-1);
 		while (argv[i][b])
 		{

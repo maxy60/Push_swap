@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/07 11:07:34 by msainton          #+#    #+#             */
+/*   Updated: 2021/12/07 15:35:54 by msainton         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CHECKER_H
 # define CHECKER_H
 
@@ -56,9 +68,9 @@ int		main(int argc, char **argv);
 
 /*BONUS*/
 
-int		stack_sort(t_stack *stack);
+int		stack_sort(t_stack *stack_a, t_stack *stack_b);
 int		checker(t_stack **stack_a, t_stack **stack_b);
 int		compare(char *s1, char *s2);
-int		check_do(char *buff, t_stack **stack_a, t_stack **stack_b);
+int		check_do(t_stack **stack_a, t_stack **stack_b, char *buff);
 
 #endif

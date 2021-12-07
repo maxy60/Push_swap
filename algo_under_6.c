@@ -6,7 +6,7 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 09:52:06 by msainton          #+#    #+#             */
-/*   Updated: 2021/12/04 13:08:16 by msainton         ###   ########.fr       */
+/*   Updated: 2021/12/07 11:15:16 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ void	algo4(t_stack **stack_a, t_stack **stack_b)
 	}
 	else if ((*stack_a)->next->next->next->element == a)
 		rra(stack_a);
-	pa(stack_a, stack_b);
+	pb(stack_a, stack_b);
 	algo3(stack_a);
-	pb(stack_b, stack_a);
+	pa(stack_b, stack_a);
 }
 
 void	algo5(t_stack **stack_a, t_stack **stack_b)
@@ -99,7 +99,7 @@ void	algo5(t_stack **stack_a, t_stack **stack_b)
 	}
 	else if ((*stack_a)->next->next->next->next->element == a)
 		rra(stack_a);
-	pa(stack_a, stack_b);
+	pb(stack_a, stack_b);
 	algo4(stack_a, stack_b);
-	pb(stack_b, stack_a);
+	pa(stack_b, stack_a);
 }

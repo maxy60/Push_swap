@@ -6,7 +6,7 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:17:46 by msainton          #+#    #+#             */
-/*   Updated: 2021/12/06 15:29:49 by msainton         ###   ########.fr       */
+/*   Updated: 2021/12/07 16:05:20 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	free_stack(t_stack *stack)
 
 void	chose_algo(t_stack **stack_a, t_stack **stack_b)
 {
+	if (stack_sort(*stack_a) == 1)
+		return ;
 	if (ft_stacksize(*stack_a) == 2)
 		algo2(*stack_a);
 	else if (ft_stacksize(*stack_a) == 3)
@@ -48,7 +50,7 @@ int	main(int argc, char **argv)
 	i = 1;
 	init(&list);
 	init1(&mynbr);
-	if (g_error(argc, argv) == -1)
+	if (g_error(argc, argv) == -1 || argc == 1)
 	{
 		ft_putstr_fd("Error", 2);
 		return (-1);

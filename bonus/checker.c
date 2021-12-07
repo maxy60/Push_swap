@@ -6,7 +6,7 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 15:21:39 by msainton          #+#    #+#             */
-/*   Updated: 2021/12/06 21:35:51 by msainton         ###   ########.fr       */
+/*   Updated: 2021/12/07 16:04:40 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,29 @@ void	free_stack(t_stack *stack)
 	free(stack);
 }
 
-int	stack_sort(t_stack *stack)
+int	stack_sort(t_stack *stack_a, t_stack *stack_b)
 {
-	while (stack->element < stack->next->element)
-			stack = stack->next;
-	if (get_last_element(stack) == stack)
+	t_stack	*last;
+
+	last = get_last_element(stack_a);
+	while (stack_a->next && stack_a->element < stack_a->next->element)
+		stack_a = stack_a->next;
+	if (stack_a == last && !stack_b)
+	{
+		ft_putstr("OK\n");
 		return (1);
+	}
 	else
+	{
+		ft_putstr("KO\n");
 		return (0);
+	}
 }
 
 int	checker(t_stack **stack_a, t_stack **stack_b)
 {
 	int		i;
-	char	buff[5];
+	char	buff[1000];
 	int		ret;
 
 	while (1)
@@ -47,34 +56,25 @@ int	checker(t_stack **stack_a, t_stack **stack_b)
 			i++;
 			if (ret < -1)
 				return (-1);
-			if (ret = 0)
-				return (0);
+			if (ret == 0)
+				return (stack_sort(*stack_a, *stack_b));
 		}
 		buff[i] = 0;
-		check_do(buff, stack_a, stack_b);
+		check_do(stack_a, stack_b, buff);
 	}
-}
-
-static void print_stack_bon_sens(t_stack *stack)
-{
-	while (stack != NULL)
-	{
-		printf("%d ", stack->element);
-		stack = stack->next;
-	}
-	printf("\n");
 }
 
 int	main(int argc, char **argv)
 {
-	int		i;
-    t_stack *stack_a;
-    t_stack *stack_b;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
 	t_var	list;
+	int		i;
+
 	i = 1;
 	init(&list);
 	stack_b = NULL;
-	if (g_error(argc, argv) == -1)
+	if (g_error(argc, argv) == -1 || argc == 1)
 	{
 		ft_putstr_fd("Error", 2);
 		return (-1);
@@ -86,10 +86,5 @@ int	main(int argc, char **argv)
 	}
 	stack_a = list.first;
 	checker(&stack_a, &stack_b);
-	return (0);
-	if (stack_sort(stack_a) == 1 && !stack_b)
-		ft_putstr("OK\n");
-	else
-		ft_putstr("KO\n");
 	free_stack(stack_a);
 }

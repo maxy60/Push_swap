@@ -6,7 +6,7 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 17:21:57 by msainton          #+#    #+#             */
-/*   Updated: 2021/12/06 20:31:00 by msainton         ###   ########.fr       */
+/*   Updated: 2021/12/07 15:26:52 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int		calc_b(t_stack *b, int nbr);
 int		calc_a(t_stack *a, int nbr);
 t_mynbr	get_min_op(t_stack *stack_a, t_stack *stack_b);
 
+int		stack_sort(t_stack *stack);
 void	algo(t_stack **stack_a, t_stack **stack_b);
 void	algo2(t_stack *stack_a);
 void	algo3(t_stack **stack_a);
