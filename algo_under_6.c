@@ -6,7 +6,7 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 09:52:06 by msainton          #+#    #+#             */
-/*   Updated: 2021/12/07 11:15:16 by msainton         ###   ########.fr       */
+/*   Updated: 2021/12/08 12:43:25 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	algo3(t_stack **stack_a)
 	}
 }
 
-int	lower(t_stack *stack)
+static int	lower(t_stack *stack)
 {
 	int	a;
 
@@ -86,7 +86,7 @@ void	algo5(t_stack **stack_a, t_stack **stack_b)
 
 	a = lower((*stack_a));
 	if ((*stack_a)->next->element == a)
-		swap((*stack_a));
+		sa((*stack_a));
 	else if ((*stack_a)->next->next->element == a)
 	{
 		ra(stack_a);

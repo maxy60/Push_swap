@@ -6,7 +6,7 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:17:46 by msainton          #+#    #+#             */
-/*   Updated: 2021/12/07 16:05:20 by msainton         ###   ########.fr       */
+/*   Updated: 2021/12/08 13:50:54 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,15 @@ int	main(int argc, char **argv)
 	t_var	list;
 	t_mynbr	mynbr;
 
+	if (argc == 1)
+		return (0);
 	stack_b = NULL;
 	i = 1;
 	init(&list);
 	init1(&mynbr);
-	if (g_error(argc, argv) == -1 || argc == 1)
+	if (g_error(argc, argv) == -1)
 	{
-		ft_putstr_fd("Error", 2);
+		ft_putstr_fd("Error\n", 2);
 		return (-1);
 	}
 	while (i < argc)

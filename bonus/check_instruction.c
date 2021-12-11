@@ -6,7 +6,7 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:06:16 by msainton          #+#    #+#             */
-/*   Updated: 2021/12/07 21:22:02 by msainton         ###   ########.fr       */
+/*   Updated: 2021/12/08 10:33:55 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,27 +39,27 @@ int	is_ok(char *buff)
 
 int	check_do(t_stack **stack_a, t_stack **stack_b, char *buff)
 {
-	if (compare(buff, "sa\n") == 1)
+	if (compare(buff, "sa\n") == 1 && ft_stacksize(*stack_a) >= 2)
 		sa(*stack_a);
-	else if (compare(buff, "sb\n") == 1)
+	else if (compare(buff, "sb\n") == 1 && ft_stacksize(*stack_b) >= 2)
 		sb(*stack_b);
 	else if (compare(buff, "ss\n") == 1)
 		ss(stack_a, stack_b);
-	else if (compare(buff, "ra\n") == 1)
+	else if (compare(buff, "ra\n") == 1 && ft_stacksize(*stack_a) >= 2)
 		ra(stack_a);
-	else if (compare(buff, "rb\n") == 1)
+	else if (compare(buff, "rb\n") == 1 && ft_stacksize(*stack_b) >= 2)
 		rb(stack_b);
 	else if (compare(buff, "rr\n") == 1)
 		rr(stack_a, stack_b);
-	else if (compare(buff, "rra\n") == 1)
+	else if (compare(buff, "rra\n") == 1 && ft_stacksize(*stack_a) >= 2)
 		rra(stack_a);
-	else if (compare(buff, "rrb\n") == 1 && *stack_b)
+	else if (compare(buff, "rrb\n") == 1 && ft_stacksize(*stack_b) >= 2)
 		rrb(stack_b);
 	else if (compare(buff, "rrr\n") == 1)
 		rrr(stack_a, stack_b);
-	else if (compare(buff, "pa\n") == 1)
+	else if (compare(buff, "pa\n") == 1 && *stack_b)
 		pa(stack_b, stack_a);
-	else if (compare(buff, "pb\n") == 1)
+	else if (compare(buff, "pb\n") == 1 && *stack_a)
 		pb(stack_a, stack_b);
 	else if (is_ok(buff) == -1)
 		return (-1);
